@@ -1,0 +1,21 @@
+.Notetitle{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(184, 182, 182);
+  width: 100%;
+}
+.para{
+  display: flex;
+  flex-grow: 1;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.langButton{
+  border-radius: 20%;
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  margin-right: 50px;
+}

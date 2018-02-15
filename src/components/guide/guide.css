@@ -1,0 +1,11 @@
+.guide{
+  display: inline-block;
+}
+.guidePara{
+  margin-left:50px;
+  text-align: top;
+}
+.noteImg{
+  max-width:17px;
+  max-height:17px;
+}

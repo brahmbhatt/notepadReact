@@ -1,0 +1,13 @@
+.SavedNotes-note {
+  display: flex;
+  flex-shrink: 0; 
+  overflow-y: auto;
+  flex-wrap: nowrap;  
+  flex-direction: column;
+  align-content: stretch;
+  border: 3px solid black;
+  background-color: rgb(184, 182, 182);
+  height: 99vh;
+  width: 100%;
+  justify-content: space-between;
+}
