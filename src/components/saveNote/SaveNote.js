@@ -20,3 +20,11 @@ SaveNote.propTypes = {
 SaveNote.defaultProps = {
   onClick: console.log,
 };
+
+SaveNote.propTypes = {
+  countRem: PropTypes.string,
+};
+
+SaveNote.defaultProps = {
+  countRem: '',
+};

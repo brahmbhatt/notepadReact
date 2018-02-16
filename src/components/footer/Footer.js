@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './footer.css';
 
 export default class Footer extends React.Component {
@@ -8,3 +9,12 @@ export default class Footer extends React.Component {
     );
   }
 }
+
+Footer.propTypes = {
+  title: PropTypes.string,
+};
+
+Footer.defaultProps = {
+  title: '',
+};
+

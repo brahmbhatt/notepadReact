@@ -19,7 +19,17 @@ export default class Notepad extends React.Component {
       notes: [],
       page: 0,
       countRem: 10,
+      // passedText: '',
+      // passedTitle: '',
     };
+  }
+  onClickNote= (key) => {
+    this.setState({
+      currentTitle: this.state.notes[key].title,
+      currentText: this.state.notes[key].text,
+      index: key,
+      page: 0,
+    });
   }
   callback = () => {
 
@@ -27,21 +37,24 @@ export default class Notepad extends React.Component {
   handleOnSave = () => {
     // Append into array //
     const obj = {
+      key: this.state.index,
       title: this.state.currentTitle,
       text: this.state.currentText,
     };
     const notes = this.state.notes.slice();
     notes[this.state.index] = obj;
-    const index = this.state.index + 1;
+
     console.log(`obj${obj}`);
     this.setState({
       notes,
-      index,
       currentTitle: '',
       currentText: '',
       page: 1,
     }, () => {
-      // this.props.getNotes(this.state.index);
+      this.setState({
+        index: this.state.notes.length,
+        key: this.state.index,
+      });
     });
   }
 
@@ -60,6 +73,7 @@ export default class Notepad extends React.Component {
   // }
   handleOnCreate= () => {
     this.setState({ page: 0 });
+    this.setState({ countRem: 10 });
   }
   render() {
     console.log(this.state.notes);
@@ -82,7 +96,7 @@ export default class Notepad extends React.Component {
     }
     return (
       <div>
-        <SavedNotes onCreateNote={this.handleOnCreate} notesArray={this.state.notes} />
+        <SavedNotes onCreateNote={this.handleOnCreate} notesArray={this.state.notes} page={this.state.page} onClickNote={this.onClickNote} />
       </div>
     );
   }

@@ -1,7 +1,8 @@
 .Notes-title{
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 50px;  
-  font-size: 30px;
+  font-size: 25px;
+  margin-bottom: 5px;
 }
 .Notes-text{
   font-family: Arial, Helvetica, sans-serif;
@@ -9,5 +10,9 @@
   height: 100px;
   margin-left: 50px;
   margin-right: 50px;
+  font-size: 15px;
   background-color: white;
+}
+.Notes-pre{
+  margin-top: 0;
 }
