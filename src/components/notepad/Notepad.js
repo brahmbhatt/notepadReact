@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './notepad.css';
 import Header from '../header/Header';
 import NoteTitle from '../noteTitle/NoteTitle';
@@ -8,25 +9,24 @@ import Guide from '../guide/Guide';
 import TextArea from '../textArea/TextArea';
 import SaveNote from '../saveNote/SaveNote';
 import SavedNotes from '../savedNotes/SavedNotes';
+import saveNotes from '../../redux/actions/action';
 
-export default class Notepad extends React.Component {
+class Notepad extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTitle: '',
       currentText: '',
-      index: 0,
-      notes: [],
       page: 0,
+      index: 0,
       countRem: 10,
-      // passedText: '',
-      // passedTitle: '',
     };
   }
   onClickNote= (key) => {
+    console.log('array:', this.props.notes);
     this.setState({
-      currentTitle: this.state.notes[key].title,
-      currentText: this.state.notes[key].text,
+      currentTitle: this.props.notes[key].title,
+      currentText: this.props.notes[key].text,
       index: key,
       page: 0,
     });
@@ -35,25 +35,24 @@ export default class Notepad extends React.Component {
 
   }
   handleOnSave = () => {
-    // Append into array //
+    // // Append into array //
     const obj = {
-      key: this.state.index,
-      title: this.state.currentTitle,
-      text: this.state.currentText,
+      index: this.state.index,
+      currentTitle: this.state.currentTitle,
+      currentText: this.state.currentText,
     };
-    const notes = this.state.notes.slice();
-    notes[this.state.index] = obj;
+    // const notes = this.state.notes.slice();
+    // notes[this.state.index] = obj;
+    console.log('my object:', obj);
 
-    console.log(`obj${obj}`);
+    this.props.saveNote(obj);
     this.setState({
-      notes,
       currentTitle: '',
       currentText: '',
       page: 1,
     }, () => {
       this.setState({
-        index: this.state.notes.length,
-        key: this.state.index,
+        index: this.props.notes.length,
       });
     });
   }
@@ -76,7 +75,6 @@ export default class Notepad extends React.Component {
     this.setState({ countRem: 10 });
   }
   render() {
-    console.log(this.state.notes);
     if (this.state.page === 0) {
       return (
         <div className="form">
@@ -96,8 +94,19 @@ export default class Notepad extends React.Component {
     }
     return (
       <div>
-        <SavedNotes onCreateNote={this.handleOnCreate} notesArray={this.state.notes} page={this.state.page} onClickNote={this.onClickNote} />
+        <SavedNotes onCreateNote={this.handleOnCreate} notesArray={this.props.notes} page={this.state.page} onClickNote={this.onClickNote} />
       </div>
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  saveNote: (obj) => {
+    console.log('oye obj:', obj);
+
+    return dispatch(saveNotes(obj));
+  },
+});
+const mapStateToProps = state => ({
+  notes: state.saveNotes.notes,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Notepad);
