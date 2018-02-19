@@ -4,7 +4,6 @@ import './notes.css';
 
 export default class Notes extends React.Component {
   render() {
-    console.log(`length${this.props.notesArray.length}`);
     return (
       <div className="Notes-div" >
         <p className="Notes-title"><strong>{this.props.notesArray[this.props.index].title}</strong></p>

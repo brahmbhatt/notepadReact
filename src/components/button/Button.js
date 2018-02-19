@@ -19,9 +19,13 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  title: PropTypes.string,
+  value: PropTypes.shape({
+    title: PropTypes.string,
+  }),
 };
 
 Button.defaultProps = {
-  title: '',
+  value: PropTypes.shape({
+    title: '',
+  }),
 };

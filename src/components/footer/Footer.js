@@ -11,10 +11,14 @@ export default class Footer extends React.Component {
 }
 
 Footer.propTypes = {
-  title: PropTypes.string,
+  value: PropTypes.shape({
+    title: PropTypes.string,
+  }),
 };
 
 Footer.defaultProps = {
-  title: '',
+  value: PropTypes.shape({
+    title: '',
+  }),
 };
 
